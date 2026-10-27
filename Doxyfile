@@ -1,7 +1,7 @@
 PROJECT_NAME           = "STM32MP157 - Monitor de Temperatura"
 PROJECT_BRIEF          = "Aquisição do KY-013 via Linux IIO"
 OUTPUT_DIRECTORY       = docs/doxygen
-INPUT                  = include src README.md
+INPUT                  = include src README.md docs/PC3.md docs/VALIDACAO_ENTREGA_1.md
 FILE_PATTERNS          = *.hpp *.cpp *.md
 RECURSIVE              = YES
 INPUT_ENCODING         = UTF-8

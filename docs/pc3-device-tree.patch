@@ -1,0 +1,23 @@
+--- original.dts
++++ pc3.dts
+@@ -1202,6 +1202,11 @@
+ 				dmas = <0x07 0x09 0x400 0x01>;
+ 				dma-names = "rx";
+ 				status = "okay";
++
++				channel@13 {
++					st,min-sample-time-ns = <0x1388>;
++					reg = <0x0d>;
++				};
+ 
+ 				channel@18 {
+ 					reg = <0x12>;
+@@ -2221,7 +2226,7 @@
+ 				phandle = <0x3e>;
+ 
+ 				pins {
+-					pinmux = <0x411 0x511>;
++					pinmux = <0x411 0x511 0x2311>;
+ 				};
+ 			};
+ 

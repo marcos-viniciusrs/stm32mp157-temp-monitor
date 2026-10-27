@@ -1,0 +1,31 @@
+Aquisicao fisica do ADC na placa STM32MP157C-DK2
+Data do computador de desenvolvimento: 2026-10-26T22:09:09-03:00
+Canal: PC3 / ADC1_IN13 / iio:device0/in_voltage13_raw
+Sensor conectado ao PC3 conforme informado pelo usuario.
+Resolucao exposta pelo driver: 16 bits; escala configurada: 65535.
+Comunicacao: console serial ST-LINK, 115200 8N1.
+O relogio da placa nao esta sincronizado; a data acima e do computador.
+
+$ uname -a; cat /sys/bus/iio/devices/iio:device0/name; cat /sys/bus/iio/devices/iio:device0/scan_elements/in_voltage13_type; cat /sys/bus/iio/devices/iio:device0/in_voltage_scale; sha256sum /root/stm32-temp-monitor/temp_monitor; i=1; while test "$i" -le 8; do printf "Amostra %s: " "$i"; /root/stm32-temp-monitor/temp_monitor /sys/bus/iio/devices/iio:device0/in_voltage13_raw 65535; echo codigo_de_saida=$?; i=$((i+1)); sleep 1; done
+Linux STM32MP1 6.9.8 #1 SMP PREEMPT Mon Aug 18 22:32:24 -03 2025 armv7l GNU/Linux
+48003000.adc:adc@0
+le:u16/16>>0
+0.038146972
+96417c3ca65d4a1afee31a26bd905329d50257e96bf306626a0eb31fc6fcd847  /root/stm32-temp-monitor/temp_monitor
+Amostra 1: ADC: 29392
+codigo_de_saida=0
+Amostra 2: ADC: 29414
+codigo_de_saida=0
+Amostra 3: ADC: 29439
+codigo_de_saida=0
+Amostra 4: ADC: 29406
+codigo_de_saida=0
+Amostra 5: ADC: 29383
+codigo_de_saida=0
+Amostra 6: ADC: 29446
+codigo_de_saida=0
+Amostra 7: ADC: 29292
+codigo_de_saida=0
+Amostra 8: ADC: 29341
+codigo_de_saida=0
+

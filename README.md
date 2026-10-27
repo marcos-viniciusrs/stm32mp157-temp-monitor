@@ -1,7 +1,7 @@
 # STM32MP157 Temperature Monitor
 
 Sistema de monitoramento de temperatura em desenvolvimento, com sensor KY-013
-e STM32MP1-DK1, utilizando C++ sobre Linux embarcado.
+e STM32MP1, utilizando C++ sobre Linux embarcado.
 
 Atualmente, o programa adquire o valor bruto do ADC pelo subsistema IIO e exibe
 uma amostra no terminal. As próximas etapas incluem conversão para temperatura,
@@ -9,11 +9,11 @@ transmissão UDP e visualização dos dados.
 
 ## Hardware
 
-| KY-013 | STM32MP1-DK1 |
+| KY-013 | STM32MP157C-DK2 utilizada no teste |
 | --- | --- |
 | VCC | 3,3 V |
 | GND | GND |
-| Sinal (S) | Entrada ADC |
+| Sinal (S) | PC3 — ADC1, canal 13 |
 
 Faça as conexões com a placa desligada. O canal ADC deve estar habilitado no Linux.
 
@@ -30,7 +30,7 @@ g++ -std=c++14 -Wall -Wextra -Iinclude src/main.cpp src/TemperatureSensor.cpp -o
 Informe o arquivo do canal IIO e o maior valor da escala do ADC:
 
 ```bash
-./temp_monitor /sys/bus/iio/devices/iio:device0/in_voltage0_raw 4095
+./temp_monitor /sys/bus/iio/devices/iio:device0/in_voltage13_raw 65535
 ```
 
 Ajuste o dispositivo, o canal e a escala conforme a configuração da placa.
@@ -78,8 +78,10 @@ g++ -std=c++14 -Wall -Wextra -Iinclude tests/TemperatureSensorTests.cpp src/Temp
 ./temperature_sensor_tests
 ```
 
-A compilação para ARM e os testes locais foram verificados. A aquisição no
-hardware ainda está pendente.
+A aquisição física foi executada na STM32MP157C-DK2, usando PC3/ADC1_IN13
+e resolução de 16 bits. O executável ARM leu oito amostras com código de saída `0`.
+Consulte o [registro da leitura na placa](docs/teste_adc_pc3.log) e as
+[instruções de configuração do PC3](docs/PC3.md).
 
 O [registro de execução](docs/teste_adc.log) contém os comandos, as saídas e os
 códigos de retorno de um teste local com entrada ADC simulada, incluindo a
