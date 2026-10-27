@@ -1,0 +1,58 @@
+Teste local com entrada ADC simulada
+Data: 2026-10-26T21:52:27-03:00
+Codigo testado: 6843814
+Ambiente: Linux no computador de desenvolvimento; sem acesso ao kit.
+
+$ g++ -std=c++14 -Wall -Wextra -Iinclude src/main.cpp src/TemperatureSensor.cpp -o temp_monitor
+Codigo de saida: 0
+
+$ g++ -std=c++14 -Wall -Wextra -Iinclude tests/TemperatureSensorTests.cpp src/TemperatureSensor.cpp -o temperature_sensor_tests
+Codigo de saida: 0
+
+$ ./temperature_sensor_tests
+OK: leitura, atualizacao e falha de acesso.
+Codigo de saida: 0
+
+Entrada simulada gravada no arquivo: 2048
+$ ./temp_monitor /tmp/adc-simulado-cb63mfv_/in_voltage0_raw 4095
+ADC: 2048
+Codigo de saida: 0
+
+Entrada simulada gravada no arquivo: 2035
+$ ./temp_monitor /tmp/adc-simulado-cb63mfv_/in_voltage0_raw 4095
+ADC: 2035
+Codigo de saida: 0
+
+Entrada simulada gravada no arquivo: 2010
+$ ./temp_monitor /tmp/adc-simulado-cb63mfv_/in_voltage0_raw 4095
+ADC: 2010
+Codigo de saida: 0
+
+Entrada simulada gravada no arquivo: 1987
+$ ./temp_monitor /tmp/adc-simulado-cb63mfv_/in_voltage0_raw 4095
+ADC: 1987
+Codigo de saida: 0
+
+Entrada simulada gravada no arquivo: 0
+$ ./temp_monitor /tmp/adc-simulado-cb63mfv_/in_voltage0_raw 4095
+ADC: 0
+Codigo de saida: 0
+
+Entrada simulada gravada no arquivo: 4095
+$ ./temp_monitor /tmp/adc-simulado-cb63mfv_/in_voltage0_raw 4095
+ADC: 4095
+Codigo de saida: 0
+
+Entrada simulada gravada no arquivo: 4096
+$ ./temp_monitor /tmp/adc-simulado-cb63mfv_/in_voltage0_raw 4095
+Erro: Leitura do ADC fora da escala configurada.
+Codigo de saida: 1
+
+$ /home/marcos/Documentos/arm-buildroot-linux-gnueabihf_sdk-buildroot/bin/arm-buildroot-linux-gnueabihf-g++ -std=c++14 -Wall -Wextra -Iinclude src/main.cpp src/TemperatureSensor.cpp -o temp_monitor_arm
+Codigo de saida: 0
+
+$ file temp_monitor_arm
+temp_monitor_arm: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 6.9.0, not stripped
+Codigo de saida: 0
+
+Resultado: execucoes locais e compilacao ARM concluidas. Teste fisico pendente.

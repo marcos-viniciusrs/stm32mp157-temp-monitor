@@ -81,6 +81,10 @@ g++ -std=c++14 -Wall -Wextra -Iinclude tests/TemperatureSensorTests.cpp src/Temp
 A compilação para ARM e os testes locais foram verificados. A aquisição no
 hardware ainda está pendente.
 
+O [registro de execução](docs/teste_adc.log) contém os comandos, as saídas e os
+códigos de retorno de um teste local com entrada ADC simulada, incluindo a
+compilação ARM. Os valores foram gravados em um arquivo temporário.
+
 ## Documentação
 
 ```bash
