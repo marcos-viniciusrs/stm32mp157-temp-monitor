@@ -1,0 +1,41 @@
+Validacao na STM32MP157C-DK2 via ST-LINK serial, 115200 8N1
+Data do computador: 2026-11-02T22:46:18.283557-03:00
+SDK: /home/marcos/sdk-stm32mp157
+Ambiente: environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
+SHA256 local e remoto conferidos antes da execucao.
+Binario de teste em /tmp; programa anterior preservado.
+
+Comando enviado:
+uname -a; cat /etc/os-release; cat /sys/bus/iio/devices/iio:device0/scan_elements/in_voltage13_type; sha256sum /tmp/entrega2_ostl_temp_monitor_arm; i=1; while test "$i" -le 8; do printf 'Amostra %s: ' "$i"; /tmp/entrega2_ostl_temp_monitor_arm /sys/bus/iio/devices/iio:device0/in_voltage13_raw 65535; echo codigo_de_saida=$?; i=$((i+1)); sleep 1; done
+
+Saida do console:
+uname -a; cat /etc/os-release; cat /sys/bus/iio/devices/iio:device0/scan_eleme
+nts/in_voltage13_type; sha256sum /tmp/entrega2_ostl_temp_monitor_arm; i=1; while
+ test "$i" -le 8; do printf 'Amostra %s: ' "$i"; /tmp/entrega2_ostl_temp_monitor
+_arm /sys/bus/iio/devices/iio:device0/in_voltage13_raw 65535; echo codigo_de_sai
+da=$?; i=$((i+1)); sleep 1; done
+Linux STM32MP1 6.9.8 #1 SMP PREEMPT Mon Aug 18 22:32:24 -03 2025 armv7l GNU/Linux
+NAME=Buildroot
+VERSION=2025.02.1-167-g2bed8a0c21
+ID=buildroot
+VERSION_ID=2025.02.1
+PRETTY_NAME="Buildroot 2025.02.1"
+le:u16/16>>0
+cb78262f9b7d6bbcea4347de4ca46c6566c4382ff0a30b24477622f73a904342  /tmp/entrega2_ostl_temp_monitor_arm
+Amostra 1: ADC: 52035
+codigo_de_saida=0
+Amostra 2: ADC: 51947
+codigo_de_saida=0
+Amostra 3: ADC: 51998
+codigo_de_saida=0
+Amostra 4: ADC: 52009
+codigo_de_saida=0
+Amostra 5: ADC: 51862
+codigo_de_saida=0
+Amostra 6: ADC: 51838
+codigo_de_saida=0
+Amostra 7: ADC: 52091
+codigo_de_saida=0
+Amostra 8: ADC: 51955
+codigo_de_saida=0
+# 

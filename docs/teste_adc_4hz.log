@@ -1,0 +1,31 @@
+Validacao STM32MP157C-DK2 - programa continuo a 4 Hz
+Data do computador: 2026-11-02T23:00:35.456897-03:00
+SDK OpenSTLinux: /home/marcos/sdk-stm32mp157
+SHA256 local: 7db72578c49558478f104aaf9d745f59ebc88c06b507b18cfa9f6353d5ee2361
+Transferencia via ST-LINK serial 115200 8N1.
+Teste limitado por sleep 3 e SIGTERM; retorno 143 esperado ao interromper.
+
+stty -echo; PS2=''
+# # 7db72578c49558478f104aaf9d745f59ebc88c06b507b18cfa9f6353d5ee2361  /tmp/temp_monitor_4hz_arm
+# 
+$ cp /tmp/temp_monitor_4hz_arm /root/stm32-temp-monitor/temp_monitor_arm && chmod +x /root/stm32-temp-monitor/temp_monitor_arm && sha256sum /root/stm32-temp-monitor/temp_monitor_arm
+7db72578c49558478f104aaf9d745f59ebc88c06b507b18cfa9f6353d5ee2361  /root/stm32-temp-monitor/temp_monitor_arm
+# 
+$ /root/stm32-temp-monitor/temp_monitor_arm /sys/bus/iio/devices/iio:device0/in_voltage13_raw 65535 --log & monitor_test_pid=$!; sleep 3; kill "$monitor_test_pid"; wait "$monitor_test_pid"; echo teste_encerrado=$?; /etc/init.d/S90pc3oled status
+ADC: 52670
+ADC: 52633
+ADC: 52491
+ADC: 52552
+ADC: 52764
+ADC: 52582
+ADC: 52595
+ADC: 52659
+ADC: 52694
+ADC: 52628
+ADC: 52526
+ADC: 52680
+Terminated
+teste_encerrado=143
+PC3 OLED: running
+[1]+  Terminated                 /root/stm32-temp-monitor/temp_monitor_arm /sys/bus/iio/devices/iio:device0/in_voltage13_raw 65535 --log
+# # 
