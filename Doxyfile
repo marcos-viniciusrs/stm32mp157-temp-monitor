@@ -1,7 +1,7 @@
 PROJECT_NAME           = "STM32MP157 - Monitor de Temperatura"
-PROJECT_BRIEF          = "Aquisição do KY-013 via Linux IIO"
+PROJECT_BRIEF          = "Aquisição KY-013, conversão para Celsius e envio UDP"
 OUTPUT_DIRECTORY       = docs/doxygen
-INPUT                  = include src README.md docs/PC3.md docs/VALIDACAO_ENTREGA_1.md
+INPUT                  = include src README.md docs/PC3.md docs/VALIDACAO_ENTREGA_1.md docs/MODELO_KY013.md docs/VALIDACAO_ENTREGA_3.md docs/OLED.md docs/UDP.md
 IMAGE_PATH             = docs
 FILE_PATTERNS          = *.hpp *.cpp *.md
 RECURSIVE              = YES

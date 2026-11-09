@@ -1,0 +1,26 @@
+#!/bin/sh
+# Buildroot: envia temperatura do KY-013 ao PC pela Ethernet.
+PROGRAM=/root/stm32-temp-monitor/temp_monitor_arm
+PIDFILE=/run/temp-monitor-udp.pid
+case "$1" in
+  start)
+    if start-stop-daemon -K -t -q -p "$PIDFILE" -x "$PROGRAM"; then
+      echo 'UDP: already running'
+      exit 0
+    fi
+    start-stop-daemon -S -b -m -q -p "$PIDFILE" -x "$PROGRAM" \
+      -O /dev/null -- /sys/bus/iio/devices/iio:device0/in_voltage13_raw \
+      65535 --udp 10.0.1.201 5005
+    ;;
+  stop)
+    start-stop-daemon -K -q -o -p "$PIDFILE" -x "$PROGRAM"
+    rm -f "$PIDFILE"
+    ;;
+  restart)
+    "$0" stop && "$0" start
+    ;;
+  status)
+    start-stop-daemon -K -t -q -p "$PIDFILE" -x "$PROGRAM"
+    ;;
+  *) echo "Usage: $0 {start|stop|restart|status}"; exit 2 ;;
+esac

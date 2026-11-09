@@ -1,0 +1,39 @@
+Validacao na placa em 09/11/2026, via ST-LINK 115200 8N1.
+O relogio da placa nao esta sincronizado.
+
+LEITURAS FISICAS E SERVICO OLED
+
+# /root/stm32-temp-monitor/temp_monitor_arm /sys/bus/iio/devices/iio:device0/in_
+
+voltage13_raw 65535 --log & monitor_pid=$!; sleep 2; kill "$monitor_pid"; wait "
+
+$monitor_pid"; /etc/init.d/S90pc3oled status; cat /proc/$(cat /run/pc3-oled.pid)
+
+/cmdline; echo
+ADC: 55954 | Temperatura: 20.35 °C
+ADC: 55899 | Temperatura: 20.49 °C
+ADC: 55695 | Temperatura: 21.03 °C
+ADC: 55901 | Temperatura: 20.49 °C
+ADC: 55611 | Temperatura: 21.25 °C
+ADC: 55723 | Temperatura: 20.96 °C
+ADC: 55587 | Temperatura: 21.31 °C
+ADC: 55803 | Temperatura: 20.75 °C
+Terminated
+PC3 OLED: running
+/root/stm32-temp-monitor/pc3_oled_arm --i2c /dev/i2c-1
+[1]+  Terminated                 /root/stm32-temp-monitor/temp_monitor_arm /sys/bus/iio/devices/iio:device0/in_voltage13_raw 65535 --log
+#
+TESTE SEPARADO DO PONTO DE REFERENCIA (ARQUIVO SIMULADO)
+
+# printf "55321\n" > /tmp/adc_calibracao_teste; /root/stm32-temp-monitor/temp_mo
+
+nitor_arm /tmp/adc_calibracao_teste 65535 --log & calibration_pid=$!; sleep 1; k
+
+ill "$calibration_pid"; wait "$calibration_pid"; rm /tmp/adc_calibracao_teste
+ADC: 55321 | Temperatura: 22.00 °C
+ADC: 55321 | Temperatura: 22.00 °C
+ADC: 55321 | Temperatura: 22.00 °C
+ADC: 55321 | Temperatura: 22.00 °C
+Terminated
+[1]+  Terminated                 /root/stm32-temp-monitor/temp_monitor_arm /tmp/adc_calibracao_teste 65535 --log
+#
